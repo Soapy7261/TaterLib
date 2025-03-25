@@ -18,9 +18,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Setup
-        run: ./gradle setup
+        run: ./gradlew setup
       - name: Build
-        run: ./gradle build
+        run: ./gradlew build
       - name: View files
         run: ls -l target
       - name: Upload artifact
