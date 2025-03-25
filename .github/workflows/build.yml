@@ -19,25 +19,20 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Cache gradle caches
+      - name: Cache gradle stuff
         uses: actions/cache@v4
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/settings.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-caches
-
-      - name: Cache gradle wrapper
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/settings.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-wrapper
+          path: | 
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/settings.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
 
       - name: Setup
-        run: ./gradlew setup
+        run: ./gradlew buildAllTheStuffNowBcGradleIsDumb
 
       - name: Build
-        run: ./gradlew build
+        run: ./gradlew build_monojar
 
       - name: View files
         run: ls -l target
